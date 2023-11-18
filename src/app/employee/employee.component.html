@@ -1,1 +1,85 @@
-<p>employee works!</p>
+<!-- employee.component.html -->
+<div id="summary" class="section panel panel-primary">
+  <div class="panel-heading">Employee Summary</div>
+  <div class="container">
+    <!-- List of employees -->
+    <!-- Find Employee by Name -->
+    <br />
+    Find Employee by Name: <input type="text" [(ngModel)]="findEmployee.name" />
+    <button class="btn btn-sm btn-primary ml-1" (click)="employeeSearch()">
+      Search
+    </button>
+
+    <table
+      class="table table-striped table-hover table-sm small table-bordered"
+      *ngIf="true"
+    >
+      <thead class="thead-light">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Salary</th>
+          <th>DepartmentId</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of employeeList">
+        <tr>
+          <td>{{ item.id }}</td>
+          <td><input type="text" [(ngModel)]="item.name" /></td>
+          <td><input type="text" [(ngModel)]="item.gender" /></td>
+          <td><input type="text" [(ngModel)]="item.salary" /></td>
+          <td><input type="text" [(ngModel)]="item.departmentId" /></td>
+          <td>
+            <button
+              class="btn btn-sm btn-primary"
+              (click)="updateEmployee(item)"
+            >
+              Update
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-sm btn-primary"
+              (click)="deleteEmployee(item)"
+            >
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add new employee -->
+  <input
+    id="newName"
+    [(ngModel)]="newEmployee.name"
+    type="text"
+    placeholder="newName"
+  />
+  <input type="text" [(ngModel)]="newEmployee.gender" placeholder="newGender" />
+  <input type="text" [(ngModel)]="newEmployee.salary" placeholder="newSalary" />
+  <input
+    type="text"
+    [(ngModel)]="newEmployee.departmentId"
+    placeholder="newDepartmentId"
+  />
+  <button class="btn btn-sm btn-primary" (click)="addEmployee(newEmployee)">
+    Add
+  </button>
+
+  <!-- Find Employee by Id -->
+  <br />
+  Find Employee Id: <input type="text" [(ngModel)]="findEmployee.id" />
+  <button class="btn btn-sm btn-primary ml-1" (click)="findEmployeeById()">
+    Search
+  </button>
+  <br />
+  404 if not find
+  {{ findEmployee | json }} <br />
+
+  <hr />
+</div>
